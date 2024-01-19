@@ -19,8 +19,7 @@ function App() {
       <ul>
         {products.map((product) => (
           <li key={product.id}>
-            <h2>{product.name}</h2> - ${product.price}
-            <p>{product.desc}</p>
+            <h3>{product.name}</h3> - ${product.price}
           </li>
         ))}
       </ul>
