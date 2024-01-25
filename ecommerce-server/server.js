@@ -70,16 +70,13 @@ app.post('/register', async (req, res) => {
     };
 });
 
-
-//User Authentication
-
 //User Login
 app.post('/login', async (req, res) => {
-    const { username, password} = rqe.body;
+    const { username, password} = req.body;
 
     try {
         //Fetch user from the database
-        const user = await db.one('SELECT * FROM user WHERE username = $1', [username]);
+        const user = await db.one('SELECT * FROM users WHERE username = $1', [username]);
 
         //Compare hashed password
         const match = await bcrypt.compare(password, user.password_hash);

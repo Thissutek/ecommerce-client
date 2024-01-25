@@ -1,7 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
+
+//Components
 import RegistrationForm from './components/Registration/Registration';
+import LoginForm from './components/UserLogin/UserLogin';
+
+
 
 
 function App() {
@@ -31,6 +36,9 @@ function App() {
         <RegistrationForm />
       </div>
 
+      <div>
+        <LoginForm />
+      </div>
     </div>
   );
 }

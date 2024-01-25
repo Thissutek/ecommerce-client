@@ -4,7 +4,8 @@ import './Registration.css';
 export default function RegistrationForm() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState(''); 
+    const [password, setPassword] = useState('');
+    const [registrationStatus, setRegistrationStatus] = useState(null);
 
     const handleRegistration = async () => {
         try {
@@ -22,12 +23,15 @@ export default function RegistrationForm() {
             if (response.ok) {
                 const user = await response.json();
                 console.log('User registered successfully:', user);
+                setRegistrationStatus('success');
             } else {
                 const errorData = await response.json();
                 console.error('Error registering user:', errorData.error);
+                setRegistrationStatus('error');
             }
         } catch (error) {
             console.error('Error registering user', error);
+            setRegistrationStatus('error');
         }
     }
 
@@ -53,6 +57,14 @@ export default function RegistrationForm() {
                 <br />
                 <button type='button' onClick={handleRegistration}>Register</button>
             </form>
+
+            {registrationStatus === 'success' && (
+                <div style={{color: 'green'}}>Registration successful!</div>
+            )}
+
+            {registrationStatus === 'error' && (
+                <div style={{color: 'red'}}> Registration failed! Please try again</div>
+            )} 
         </div>
     )
 };
